@@ -20,5 +20,9 @@
   "homepage": "https://github.com/surajverma2587/workout-tracker-mvc#readme",
   "devDependencies": {
     "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.2",
+    "express-handlebars": "^6.0.2"
   }
 }
