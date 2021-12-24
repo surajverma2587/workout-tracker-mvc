@@ -1,0 +1,23 @@
+nav {
+  min-height: 68px;
+}
+
+.custom-navbar {
+  background-color: #010001;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #f4442e;
+}
+
+.navbar-dark .navbar-toggler {
+  color: #f4442e;
+  box-shadow: none;
+}
+
+@media screen and (max-width: 992px) {
+  .navbar-nav {
+    justify-content: center;
+    align-items: center;
+  }
+}
