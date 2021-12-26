@@ -25,6 +25,15 @@ nav {
   background-color: var(--dark-black);
   padding: 3rem;
   margin-top: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.sign-up-form {
+  width: 50%;
 }
 
 .title {
@@ -55,5 +64,9 @@ nav {
 
   .sign-up-container {
     margin-top: 4rem;
+  }
+
+  .sign-up-form {
+    width: 90%;
   }
 }
