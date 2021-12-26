@@ -82,7 +82,7 @@ const renderErrorMessages = (errors) => {
   });
 };
 
-const handleSubmit = (event) => {
+const handleSignUp = async (event) => {
   event.preventDefault();
 
   const email = emailInput.val();
@@ -108,8 +108,28 @@ const handleSubmit = (event) => {
   renderErrorMessages(errors);
 
   if (!Object.keys(errors).length) {
-    console.log("SUBMIT FORM");
+    const response = await fetch("/auth/sign-up", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+        first_name: firstName,
+        last_name: lastName,
+        height,
+        weight,
+        age,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      window.location.replace("/login");
+    }
   }
 };
 
-signUpForm.on("submit", handleSubmit);
+signUpForm.on("submit", handleSignUp);
