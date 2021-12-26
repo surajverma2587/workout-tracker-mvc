@@ -7,6 +7,7 @@ const lastNameInput = $("#last-name");
 const heightInput = $("#height");
 const weightInput = $("#weight");
 const ageInput = $("#age");
+const signUpConfirmationModal = $("#sign-up-confirmation-modal");
 
 const getErrors = ({
   email,
@@ -127,9 +128,18 @@ const handleSignUp = async (event) => {
     const data = await response.json();
 
     if (data.success) {
-      window.location.replace("/login");
+      signUpConfirmationModal.modal("show");
+      signUpConfirmationModal.on("hide.bs.modal", () => {
+        window.location.replace("/login");
+      });
     }
   }
 };
 
+const onReady = () => {
+  signUpConfirmationModal.modal("hide");
+};
+
 signUpForm.on("submit", handleSignUp);
+
+$(document).ready(onReady);
