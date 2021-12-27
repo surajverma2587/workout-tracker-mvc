@@ -21,7 +21,7 @@ nav {
   box-shadow: none;
 }
 
-.sign-up-container {
+.form-container {
   background-color: var(--dark-black);
   padding: 3rem;
   margin-top: 6rem;
@@ -32,7 +32,7 @@ nav {
   align-content: center;
 }
 
-.sign-up-form {
+.sign-up-login-form {
   width: 50%;
 }
 
@@ -62,11 +62,11 @@ nav {
     align-items: center;
   }
 
-  .sign-up-container {
+  .form-container {
     margin-top: 4rem;
   }
 
-  .sign-up-form {
+  .sign-up-login-form {
     width: 90%;
   }
 }
