@@ -1,15 +1,8 @@
+const loginForm = $("#login-form");
 const signUpForm = $("#sign-up-form");
-const emailInput = $("#email");
-const passwordInput = $("#password");
-const confirmPasswordInput = $("#confirm-password");
-const firstNameInput = $("#first-name");
-const lastNameInput = $("#last-name");
-const heightInput = $("#height");
-const weightInput = $("#weight");
-const ageInput = $("#age");
 const signUpConfirmationModal = $("#sign-up-confirmation-modal");
 
-const getErrors = ({
+const getErrorsSignUp = ({
   email,
   password,
   confirmPassword,
@@ -86,16 +79,16 @@ const renderErrorMessages = (errors) => {
 const handleSignUp = async (event) => {
   event.preventDefault();
 
-  const email = emailInput.val();
-  const password = passwordInput.val();
-  const confirmPassword = confirmPasswordInput.val();
-  const firstName = firstNameInput.val();
-  const lastName = lastNameInput.val();
-  const height = heightInput.val();
-  const weight = weightInput.val();
-  const age = ageInput.val();
+  const email = $("#email").val();
+  const password = $("#password").val();
+  const confirmPassword = $("#confirm-password").val();
+  const firstName = $("#first-name").val();
+  const lastName = $("#last-name").val();
+  const height = $("#height").val();
+  const weight = $("#weight").val();
+  const age = $("#age").val();
 
-  const errors = getErrors({
+  const errors = getErrorsSignUp({
     email,
     password,
     confirmPassword,
@@ -136,10 +129,40 @@ const handleSignUp = async (event) => {
   }
 };
 
+const handleLogin = async (event) => {
+  event.preventDefault();
+
+  const email = $("#email").val();
+  const password = $("#password").val();
+
+  $("#login-error").text("");
+
+  if (!email || !password) {
+    $("#login-error").text("Login failed, please try again");
+  } else {
+    const response = await fetch("/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      window.location.replace("/my-workouts");
+    } else {
+      $("#login-error").text("Login failed, please try again");
+    }
+  }
+};
+
 const onReady = () => {
   signUpConfirmationModal.modal("hide");
 };
 
 signUpForm.on("submit", handleSignUp);
+loginForm.on("submit", handleLogin);
 
 $(document).ready(onReady);
